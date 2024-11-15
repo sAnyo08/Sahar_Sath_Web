@@ -1,0 +1,466 @@
+// router.post(
+//   "/createusers",
+//   [
+//     body("name").isString(),
+//     body("email").isEmail(),
+//     body("password", "Incorrect password").isLength({ min: 5 }),
+//     body("location").isString(),
+//   ],
+//   async (req, res) => {
+//     const errors = validationResult(req);
+//     if (!errors.isEmpty()) {
+//       return res.status(400).json({ errors: errors.array() });
+//     }
+
+//     try {
+//       await User.create({
+//         name: req.body.name,
+//         email: req.body.email,
+//         password: req.body.password,
+//         location: req.body.location,
+//       });
+//       res.json({ success: true });
+//     } catch (error) {
+//       console.log(error);
+//       res.json({ success: false });
+//     }
+//   }
+// );
+
+// if (!userData) {
+      //   return res.status(400).json({ message: "Invalid email or password" });
+      // }
+      // console.log("Entered Password:", req.body.password); // Log entered password
+      // console.log("Stored Password:", userData.password); // Log stored password
+
+
+
+      import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
+
+function Login() {
+  const navigate = useNavigate();
+  const [credentials, setCredentials] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const response = await fetch("http://localhost:5000/api/loginusers", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(credentials),
+    });
+    const json = await response.json();
+
+    if (json.success) {
+      localStorage.setItem("token", json.token);
+      navigate("/home"); // Navigate to the home page after successful login
+    } else {
+      alert("Invalid credentials");
+    }
+  };
+
+  const onChange = (event) => {
+    setCredentials({
+      ...credentials,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
+      {/* Background Styling */}
+      <div className="absolute inset-0 bg-gray-200 -z-10 h-full w-full">
+        <div className="absolute inset-0 bg-white bg-opacity-80"></div>
+      </div>
+
+      {/* Login Form */}
+      <div className="relative z-10 w-full max-w-md bg-white shadow-lg rounded-lg px-8 py-10">
+        <h2 className="text-center text-2xl font-semibold text-blue-900 mb-8">
+          Government Portal Login
+        </h2>
+
+        <form className="space-y-6" onSubmit={handleSubmit}>
+          <div>
+            <label htmlFor="email" className="block text-md font-medium text-blue-900">
+              User ID
+            </label>
+            <div className="mt-2">
+              <input
+                id="email"
+                name="email"
+                type="email"
+                value={credentials.email}
+                onChange={onChange}
+                autoComplete="email"
+                required
+                className="block w-full border-2 border-blue-200 rounded-md py-2 px-3 text-blue-800 placeholder-gray-500 focus:outline-none focus:border-blue-500"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label htmlFor="password" className="block text-md font-medium text-blue-900">
+              Password
+            </label>
+            <div className="mt-2">
+              <input
+                id="password"
+                name="password"
+                type="password"
+                value={credentials.password}
+                onChange={onChange}
+                autoComplete="current-password"
+                required
+                className="block w-full border-2 border-blue-200 rounded-md py-2 px-3 text-blue-800 placeholder-gray-500 focus:outline-none focus:border-blue-500"
+              />
+            </div>
+          </div>
+
+          <div>
+            <button
+              type="submit"
+              className="w-full bg-blue-700 text-white font-semibold rounded-md py-2 shadow-sm hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2"
+            >
+              Login
+            </button>
+          </div>
+        </form>
+
+        <p className="mt-6 text-center text-sm text-gray-600">
+          For assistance, contact <span className="text-blue-800 font-semibold">helpdesk@govportal.gov</span>
+        </p>
+      </div>
+    </div>
+  );
+}
+
+export default Login;
+
+
+/* App.css */
+.app {
+  font-family: Arial, sans-serif;
+}
+
+.navbar {
+  background-color: #333;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.nav-buttons button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.nav-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.nav-buttons button:active {
+  background-color: #004085;
+}
+
+.grievance-indicators {
+  display: flex;
+  gap: 20px;
+  
+}
+
+.indicator {
+  background-color: #0056b3;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.nav-buttons button {
+  margin-left: 10px;
+  padding: 10px 20px;
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.nav-buttons button:hover {
+  background-color: #003f7f;
+}
+
+.content {
+  padding: 20px;
+  height: auto;
+  background-color: #c5c2c2;
+  border-radius: 10px;
+  margin-top: 200px;
+}
+
+.grievance-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  
+}
+
+.grievance-item {
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: white;
+  
+}
+
+.grievance-item button {
+  margin-left: 10px;
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.grievance-item button:hover {
+  background-color: #0056b3;
+}
+
+
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { Home, Phone, Mail, MenuIcon } from "lucide-react"
+import Link from "next/link"
+
+export default function GrievancePortalLanding() {
+  return (
+    <div className="flex flex-col min-h-screen">
+      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className="container flex h-14 items-center">
+          <div className="mr-4 hidden md:flex">
+            <Link className="mr-6 flex items-center space-x-2" href="/">
+              <Home className="h-6 w-6" />
+              <span className="hidden font-bold sm:inline-block">
+                Slum Grievance Portal
+              </span>
+            </Link>
+            <nav className="flex items-center space-x-6 text-sm font-medium">
+              <Link
+                href="#features"
+                className="transition-colors hover:text-foreground/80 text-foreground/60"
+              >
+                Features
+              </Link>
+              <Link
+                href="#submit"
+                className="transition-colors hover:text-foreground/80 text-foreground/60"
+              >
+                Submit Grievance
+              </Link>
+              <Link
+                href="#contact"
+                className="transition-colors hover:text-foreground/80 text-foreground/60"
+              >
+                Contact
+              </Link>
+            </nav>
+          </div>
+          <Button variant="outline" size="icon" className="md:hidden">
+            <MenuIcon className="h-6 w-6" />
+            <span className="sr-only">Toggle menu</span>
+          </Button>
+        </div>
+      </header>
+
+      <main className="flex-1">
+        <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48">
+          <div className="container px-4 md:px-6">
+            <div className="flex flex-col items-center space-y-4 text-center">
+              <div className="space-y-2">
+                <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
+                  Welcome to the Slum Grievance Portal
+                </h1>
+                <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
+                  Your voice matters. Report issues, suggest improvements, and help us build a better community together.
+                </p>
+              </div>
+              <div className="space-x-4">
+                <Button asChild>
+                  <Link href="#submit">Submit a Grievance</Link>
+                </Button>
+                <Button variant="outline" asChild>
+                  <Link href="#features">Learn More</Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="features" className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
+          <div className="container px-4 md:px-6">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12">How We Can Help</h2>
+            <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-3">
+              <div className="flex flex-col items-center space-y-2 border-gray-800 p-4 rounded-lg">
+                <div className="p-2 bg-black bg-opacity-50 rounded-full">
+                  <svg
+                    className=" text-white h-6 w-6 mb-2 opacity-75"
+                    fill="none"
+                    height="24"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="m16 6 4 14" />
+                    <path d="M12 6v14" />
+                    <path d="M8 8v12" />
+                    <path d="M4 4v16" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold">Quick Reporting</h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400 text-center">
+                  Easily report issues affecting your community with our simple form.
+                </p>
+              </div>
+              <div className="flex flex-col items-center space-y-2 border-gray-800 p-4 rounded-lg">
+                <div className="p-2 bg-black bg-opacity-50 rounded-full">
+                  <svg
+                    className=" text-white h-6 w-6 mb-2 opacity-75"
+                    fill="none"
+                    height="24"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M18 11.5V9a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v1.4" />
+                    <path d="M14 10V8a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2" />
+                    <path d="M10 9.9V9a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v5" />
+                    <path d="M6 14v0a2 2 0 0 0-2 2v0a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v0a2 2 0 0 0-2-2" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold">Track Progress</h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400 text-center">
+                  Stay updated on the status of your reported grievances.
+                </p>
+              </div>
+              <div className="flex flex-col items-center space-y-2 border-gray-800 p-4 rounded-lg">
+                <div className="p-2 bg-black bg-opacity-50 rounded-full">
+                  <svg
+                    className=" text-white h-6 w-6 mb-2 opacity-75"
+                    fill="none"
+                    height="24"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold">Community Support</h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400 text-center">
+                  Connect with local authorities and community leaders for faster resolution.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="submit" className="w-full py-12 md:py-24 lg:py-32">
+          <div className="container px-4 md:px-6">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12">Submit Your Grievance</h2>
+            <form className="max-w-md mx-auto space-y-4">
+              <Input placeholder="Your Name" required />
+              <Input type="tel" placeholder="Phone Number" required />
+              <Input placeholder="Location" required />
+              <Textarea placeholder="Describe your grievance..." required className="min-h-[100px]" />
+              <Button type="submit" className="w-full">Submit Grievance</Button>
+            </form>
+          </div>
+        </section>
+      </main>
+
+      <footer id="contact" className="w-full py-6 bg-gray-100 dark:bg-gray-800">
+        <div className="container px-4 md:px-6">
+          <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3">
+            <div className="space-y-2">
+              <h3 className="text-lg font-bold">About Us</h3>
+              <p className="text-sm text-gray-500 dark:text-gray-400">
+                We're dedicated to improving living conditions in slum areas through community engagement and prompt issue resolution.
+              </p>
+            </div>
+            <div className="space-y-2">
+              <h3 className="text-lg font-bold">Contact</h3>
+              <p className="text-sm text-gray-500 dark:text-gray-400 flex items-center">
+                <Phone className="mr-2 h-4 w-4" /> +1234567890
+              </p>
+              <p className="text-sm text-gray-500 dark:text-gray-400 flex items-center">
+                <Mail className="mr-2 h-4 w-4" /> support@slumgrievance.org
+              </p>
+            </div>
+            <div className="space-y-2">
+              <h3 className="text-lg font-bold">Quick Links</h3>
+              <ul className="space-y-1 text-sm text-gray-500 dark:text-gray-400">
+                <li>
+                  <Link href="/privacy-policy" className="hover:underline">Privacy Policy</Link>
+                </li>
+                <li>
+                  <Link href="/terms-of-service" className="hover:underline">Terms of Service</Link>
+                </li>
+                <li>
+                  <Link href="/faq" className="hover:underline">FAQ</Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="mt-8 text-center text-sm text-gray-500 dark:text-gray-400">
+            © 2023 Slum Grievance Portal. All rights reserved.
+          </div>
+        </div>
+      </footer>
+    </div>
+  )
+}
+
+app.get('/', async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const grievances = await Grievance.find();
+    res.status(200).json(grievances);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Failed to fetch grievances' });
+  }
+});

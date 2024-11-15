@@ -1,0 +1,108 @@
+/* General styles */
+.app {
+    font-family: Arial, sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Navbar styles */
+  .navbar {
+    background-color: #333;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .nav-buttons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .nav-buttons button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .nav-buttons button:hover {
+    background-color: #0056b3;
+  }
+  
+  .nav-buttons button:active {
+    background-color: #004085;
+  }
+  
+  /* Grievance indicators styles */
+  .grievance-indicators {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+  }
+  
+  .indicator {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    width: 200px;
+    text-align: center;
+  }
+  
+  /* Content styles */
+  .content {
+    padding: 10px;
+  }
+  
+  /* Grievance list styles */
+.grievance-list {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    gap: 10px; /* Space between items */
+  }
+  
+  /* Grievance item styles */
+  .grievance-item {
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between; /* Space between title and buttons */
+    align-items: center;
+  }
+  
+  .grievance-item span {
+    font-size: 16px;
+  }
+  
+  .grievance-item-buttons {
+    display: flex;
+    gap: 5px; /* Space between buttons */
+  }
+  
+  .grievance-item button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .grievance-item button:hover {
+    background-color: #0056b3;
+  }
+  
+  .grievance-item button:active {
+    background-color: #004085;
+  }
+  
+  
