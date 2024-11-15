@@ -90,13 +90,13 @@ export default function GrievanceComponent() {
                             </thead>
                             <tbody>
                                 {filteredGrievances.map((grievance) => (
-                                    <tr key={`${grievance.userId}-${grievance.createdAt}`} className="border-b border-gray-200 hover:bg-gray-100">
+                                    <tr key={`${grievance._id}-${grievance.createdAt}`} className="border-b border-gray-200 hover:bg-gray-100">
                                         <td className="py-3 px-4 border-r border-gray-300">{grievance.title}</td>
                                         <td className="py-3 px-4 border-r border-gray-300">{grievance.description}</td>
                                         <td className="py-3 px-4 border-r border-gray-300">{grievance.status}</td>
                                         <td className="py-3 px-4 border-r border-gray-300">{new Date(grievance.createdAt).toLocaleString()}</td>
                                         <td className="py-3 px-4 text-center">
-                                            <Link to='/summarize'>
+                                            <Link to={`/summarize/${grievance._id}`}>
                                                 <button className="bg-blue-700 hover:bg-blue-800 text-white font-semibold py-1 px-3 rounded transition duration-300">
                                                     View
                                                 </button>

@@ -14,4 +14,5 @@ router.get('/grievances', async (req, res) => {
     }
 });
 
+
 module.exports = router; // Export the router for use in the app

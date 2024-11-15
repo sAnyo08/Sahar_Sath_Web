@@ -64,14 +64,7 @@ const Navbar = () => {
                 Services
               </Link>
             </li>
-            <li>
-              <Link
-                to="/"
-                className="block py-2 px-3 text-gray-100 rounded hover:bg-gray-800 md:hover:bg-transparent md:border-0 md:hover:text-yellow-300 md:p-0"
-              >
-                Pricing
-              </Link>
-            </li>
+
             <li>
               <Link
                 to="/faqsE"

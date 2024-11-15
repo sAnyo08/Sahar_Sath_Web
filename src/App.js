@@ -1,16 +1,14 @@
 import "./App.css";
 import Home from "./components/Employee/Home";
 import Login from "./components/Login";
+import GrievancePage from './components/Employee/Summarize';
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Summarize from "./components/Employee/Summarize";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Faqs from "./components/Faqs";
 import Land from "./components/User/Land";
 import NavbarE from "./components/Employee/NavbarE";
-// import Count from "./components/User/Count";
-// import Table from "./components/Employee/Table";
 
 function App() {
   return (
@@ -37,12 +35,12 @@ function App() {
           }
         />
         <Route
-          path="/summarize"
+          path="/summarize/:grievanceId"
           element={
             <>
               <Header />
               <Navbar />
-              <Summarize />
+              <GrievancePage />
               <Footer />
             </>
           }
@@ -58,6 +56,7 @@ function App() {
             </>
           }
         />
+
         <Route
           path="/faqs"
           element={
