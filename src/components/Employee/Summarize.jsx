@@ -12,9 +12,8 @@ export default function GrievancePage() {
         // Fetch grievance details based on the grievanceId
 
         const fetchGrievanceDetails = async () => {
-            console.log("sanyoooooo")
             try {
-                const response = await fetch(`http://localhost:5000/api/grievances/1`);
+                const response = await fetch(`http://localhost:5000/api/grievances/${grievanceId}`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch grievance details');
                 }
