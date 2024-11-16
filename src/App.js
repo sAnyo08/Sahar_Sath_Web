@@ -9,7 +9,7 @@ import Header from "./components/Header";
 import Faqs from "./components/Faqs";
 import Land from "./components/User/Land";
 import NavbarE from "./components/Employee/NavbarE";
-
+import WhatsNew from "./components/User/WhatsNew";
 function App() {
   return (
     <Router>
@@ -75,6 +75,7 @@ function App() {
               <Header />
               <Navbar />
               <Land />
+              <WhatsNew />
               <Footer />
             </>
           }

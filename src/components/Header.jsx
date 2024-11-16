@@ -52,12 +52,12 @@ const Header = () => {
                     >
                         A+
                     </button>
-                    <button
+                    {/* <button
                         onClick={toggleTheme}
                         className="px-4 py-0.3 bg-gray-200 text-blue-900 rounded hover:bg-gray-300"
                     >
                         {isDarkMode ? 'Light Mode' : 'Dark Mode'}
-                    </button>
+                    </button> */}
                 </div>
             </div>
             {/* Apply font size and theme to main content */}

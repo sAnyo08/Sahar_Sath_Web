@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import CardContainer from '../User/Land';
+import Land from '../User/Land';
 
 export default function GrievanceComponent() {
     const [grievances, setGrievances] = useState([]);
@@ -53,7 +53,17 @@ export default function GrievanceComponent() {
     return (
         <div>
             {/* Pass the counts to CardContainer as props */}
-            <CardContainer pendingCount={pendingCount} solvedCount={solvedCount} />
+            <div className="flex justify-center space-x-4 p-4">
+                <div className="bg-gradient-to-r from-blue-900 to-blue-700 shadow-lg rounded-lg p-6 w-1/4">
+                    <h2 className="text-6xl font-semibold mb-2 text-white text-center">{solvedCount}</h2>
+
+                    <p className="text-white text-center text-3xl">Grievances Solved</p>
+                </div>
+                <div className="bg-gradient-to-r from-blue-900 to-blue-700 shadow-lg rounded-lg p-6 w-1/4">
+                    <h2 className="text-6xl font-semibold mb-2 text-white text-center">{pendingCount}</h2>
+                    <p className="text-white text-center text-3xl">Grievances Pending</p>
+                </div>
+            </div>
 
             {loading ? (
                 <p className="text-center">Loading grievances...</p>
@@ -85,6 +95,7 @@ export default function GrievanceComponent() {
                                     <th className="py-3 px-4 text-left border-r border-gray-300 font-semibold">Description</th>
                                     <th className="py-3 px-4 text-left border-r border-gray-300 font-semibold">Status</th>
                                     <th className="py-3 px-4 text-left border-r border-gray-300 font-semibold">Date/Time</th>
+                                    <th className="py-3 px-4 text-left border-r border-gray-300 font-semibold">Images</th>
                                     <th className="py-3 px-4 text-left font-semibold">Action</th>
                                 </tr>
                             </thead>
@@ -93,6 +104,7 @@ export default function GrievanceComponent() {
                                     <tr key={`${grievance._id}-${grievance.createdAt}`} className="border-b border-gray-200 hover:bg-gray-100">
                                         <td className="py-3 px-4 border-r border-gray-300">{grievance.title}</td>
                                         <td className="py-3 px-4 border-r border-gray-300">{grievance.description}</td>
+                                        <td className="py-3 px-4 border-r border-gray-300">{grievance.status}</td>
                                         <td className="py-3 px-4 border-r border-gray-300">{grievance.status}</td>
                                         <td className="py-3 px-4 border-r border-gray-300">{new Date(grievance.createdAt).toLocaleString()}</td>
                                         <td className="py-3 px-4 text-center">
