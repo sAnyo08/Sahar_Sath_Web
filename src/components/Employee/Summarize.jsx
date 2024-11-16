@@ -127,7 +127,7 @@ export default function GrievancePage() {
                                     <div className="space-y-4">
                                         <p><strong>Subject:</strong> Grievance Submission: {grievanceName}</p>
                                         <p>Dear {grievanceDepartment || '[Department Name]'},</p>
-                                        <p>{grievanceText}</p>
+                                        <p><b>{grievanceText}</b></p>
                                         <p>Thank you for your attention. I look forward to a prompt resolution.</p>
                                         <p>Yours sincerely,<br />{contactDetails || '[Your Name]'}</p>
                                     </div>

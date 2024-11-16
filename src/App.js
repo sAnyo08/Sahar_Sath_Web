@@ -10,6 +10,7 @@ import Faqs from "./components/Faqs";
 import Land from "./components/User/Land";
 import NavbarE from "./components/Employee/NavbarE";
 import WhatsNew from "./components/User/WhatsNew";
+import AboutPage from "./components/User/About";
 function App() {
   return (
     <Router>
@@ -76,6 +77,17 @@ function App() {
               <Navbar />
               <Land />
               <WhatsNew />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/about"
+          element={
+            <>
+              <Header />
+              <NavbarE />
+              <AboutPage />
               <Footer />
             </>
           }
