@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import emailjs from 'emailjs-com';
 
 export default function GrievancePage() {
     const { grievanceId } = useParams();
@@ -79,6 +80,32 @@ export default function GrievancePage() {
         const sizes = ['Bytes', 'KB', 'MB', 'GB'];
         const i = Math.floor(Math.log(bytes) / Math.log(k));
         return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    };
+
+    const handleEmailSend = () => {
+        if (!grievanceName || !grievanceDepartment || !contactDetails) {
+            alert('Please fill out all required fields before forwarding the grievance.');
+            return;
+        }
+
+        const emailParams = {
+            to_name: grievanceDepartment,   // Assuming department is the recipient
+            from_name: "Vatsal Chudasama", // Replace with actual sender name
+            title: grievanceName,
+            message: grievanceText,
+            contact: contactDetails
+        };
+
+
+        emailjs.send('service_oznhqmg', 'template_l8h2rea', emailParams, 'ym3NBwMFI0EXhagHv')
+            .then((response) => {
+                console.log('Email sent successfully:', response);
+                alert('Grievance has been forwarded successfully!');
+            })
+            .catch((error) => {
+                console.error('Error sending email:', error);
+                alert('Failed to send grievance. Please try again later.');
+            });
     };
 
     if (isLoading) {
@@ -251,7 +278,7 @@ export default function GrievancePage() {
                                 </div>
 
                                 <button
-                                    onClick={() => console.log('Forward Grievance clicked')}
+                                    onClick={handleEmailSend}
                                     className="w-full px-6 py-2.5 bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-300 text-white font-medium rounded-lg text-sm transition-colors duration-200 inline-flex items-center justify-center space-x-2"
                                     aria-label="Forward grievance to department"
                                 >
@@ -265,6 +292,6 @@ export default function GrievancePage() {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 }
