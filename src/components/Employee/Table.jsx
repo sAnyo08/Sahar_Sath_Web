@@ -95,7 +95,7 @@ export default function GrievanceComponent() {
                                     <th className="py-3 px-4 text-left border-r border-gray-300 font-semibold">Description</th>
                                     <th className="py-3 px-4 text-left border-r border-gray-300 font-semibold">Status</th>
                                     <th className="py-3 px-4 text-left border-r border-gray-300 font-semibold">Date/Time</th>
-                                    {/* <th className="py-3 px-4 text-left border-r border-gray-300 font-semibold">Images</th> */}
+                                    <th className="py-3 px-4 text-left border-r border-gray-300 font-semibold">Address</th>
                                     <th className="py-3 px-4 text-left font-semibold">Action</th>
                                 </tr>
                             </thead>
@@ -105,7 +105,7 @@ export default function GrievanceComponent() {
                                         <td className="py-3 px-4 border-r border-gray-300">{grievance.title}</td>
                                         <td className="py-3 px-4 border-r border-gray-300">{grievance.description}</td>
                                         <td className="py-3 px-4 border-r border-gray-300">{grievance.status}</td>
-                                        {/* <td className="py-3 px-4 border-r border-gray-300">{grievance.status}</td> */}
+                                        <td className="py-3 px-4 border-r border-gray-300">{grievance.status}</td>
                                         <td className="py-3 px-4 border-r border-gray-300">{new Date(grievance.createdAt).toLocaleString()}</td>
                                         <td className="py-3 px-4 text-center">
                                             <Link to={`/summarize/${grievance._id}`}>
