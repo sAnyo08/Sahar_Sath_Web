@@ -9,6 +9,9 @@ const Header = () => {
     const officerLogin = () => {
         navigate('/loginuser')
     }
+    const ngoLogin = () => {
+        navigate('/loginNgo')
+    }
 
     // Increase font size
     const increaseFontSize = () => {
@@ -34,6 +37,12 @@ const Header = () => {
                     Grievance Redressal Portal
                 </div>
                 <div className="flex items-center space-x-2">
+                    <button
+                        onClick={ngoLogin}
+                        className="px-2 py-0.3 bg-gray-200 text-blue-900 rounded hover:bg-gray-300"
+                    >
+                        NGO Login
+                    </button>
                     <button
                         onClick={officerLogin}
                         className="px-2 py-0.3 bg-gray-200 text-blue-900 rounded hover:bg-gray-300"

@@ -11,6 +11,8 @@ import Land from "./components/User/Land";
 import NavbarE from "./components/Employee/NavbarE";
 import WhatsNew from "./components/User/WhatsNew";
 import AboutPage from "./components/User/About";
+import LoginNgo from "./components/Admin/LoginNgo";
+import HomeNgo from "./components/Admin/HomeNgo"
 function App() {
   return (
     <Router>
@@ -21,6 +23,17 @@ function App() {
             <>
               <Header />
               <Login />
+
+            </>
+          }
+        />
+        <Route
+          path="/loginNgo"
+          element={
+            <>
+              <Header />
+              <LoginNgo />
+
             </>
           }
         />
@@ -31,6 +44,17 @@ function App() {
               <Header />
               <NavbarE />
               <Home />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/homeNgo"
+          element={
+            <>
+              <Header />
+              <NavbarE />
+              <HomeNgo />
               <Footer />
             </>
           }

@@ -18,8 +18,8 @@ const Footer = () => {
                 <hr className="border-gray-500 mb-6" />
 
                 <div className="copyRight text-center">
-                    <p>An initiative by Chief Minister’s Office, Mantralaya, Mumbai. Supported by Directorate of Information Technology (DIT)</p>
-                    <p>© 2024 Content Owned by Government of Maharashtra</p>
+                    <p>An initiative to make the country more better than before</p>
+                    <p>© 2025 Content Owned by Crce project group</p>
                 </div>
             </div>
         </div>

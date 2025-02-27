@@ -251,15 +251,19 @@ export default function GrievancePage() {
                                     <label htmlFor="department" className="block text-sm font-medium text-gray-700 mb-1">
                                         Department <span className="text-red-500">*</span>
                                     </label>
-                                    <input
-                                        type="text"
+                                    <select
                                         id="department"
                                         value={grievanceDepartment}
                                         onChange={(e) => setGrievanceDepartment(e.target.value)}
                                         className="w-full px-4 py-2.5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200"
-                                        placeholder="Select or enter department"
                                         aria-required="true"
-                                    />
+                                    >
+                                        <option value="" disabled>Select a department</option>
+                                        <option value="waste management">Waste Management</option>
+                                        <option value="garbage management">Garbage Management</option>
+                                        <option value="water management">Water Management</option>
+                                    </select>
+
                                 </div>
 
                                 <div>

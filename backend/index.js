@@ -26,7 +26,7 @@ app.get("/", (req, res) => {
 
 app.use("/api", require("./Routes/CreatUser")); // Route for creating users
 app.use("/api", require("./Routes/Grievances")); // Route for grievance-related logic    // Modular grievance router
-
+app.use("/api", require("./Routes/Profile"));
 // Start the server
 app.listen(5000, () => {
   console.log("Server running on http://localhost:5000");
